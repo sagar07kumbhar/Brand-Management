@@ -1,0 +1,209 @@
+<div class="MT-dashboard MT-table">
+    <mat-progress-bar mode="indeterminate" *ngIf="data.loader" class="MT-round-progress"></mat-progress-bar>	
+    <mat-card>
+      <mat-card-title>
+        <span>Admin's List</span>
+        <span class="fill-space"></span>    
+      </mat-card-title>
+      <mat-card-subtitle>
+          <span class="fill-space"></span>
+          <div class="button-row action-btns pull-right">
+            <button color='primary' mat-icon-button matTooltip="Export Current Table" matTooltipPosition="above" (click)='downloadReport(true,1)' class='download-1'>
+              <span class="fa fa-file-excel-o"></span>
+            </button>
+            <button color='primary' mat-icon-button matTooltip="Export All" matTooltipPosition="above" (click)='downloadReport(false,2)' class='download-2'>
+              <span class="fa fa-file-excel-o"></span>
+            </button>
+          </div>
+      </mat-card-subtitle>
+      <mat-card-content>
+      <mat-grid-list cols="5" rowHeight="4:1.5">
+        <mat-grid-tile [colspan] = "2">
+          
+          <mat-form-field class="bulk-action">
+                <mat-select placeholder="Bulk Action" #bulkSel [(ngModel)] = 'data.selected'>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let bulk of bulks" [value]="bulk.value">
+                         {{bulk.viewValue}}
+                    </mat-option>
+                </mat-select>
+          </mat-form-field>
+          <button mat-raised-button (click)='bulkAction(bulkSel.value)'>Apply</button>
+        
+        </mat-grid-tile>
+        <mat-grid-tile >
+          <mat-form-field>
+            <input matInput type="text" #search placeholder="Search" [(ngModel)]="data.q">
+              <button mat-button *ngIf="search.value" matSuffix mat-icon-button aria-label="Clear" (click)="mtSearch()">
+                <mat-icon>search</mat-icon>
+              </button>
+              <button mat-button *ngIf="search.value" matSuffix mat-icon-button aria-label="Clear" (click)="mtClear()" matTooltip="Clear Results" matTooltipPosition="above">
+                <mat-icon>highlight_off</mat-icon>
+              </button>
+          </mat-form-field>
+        </mat-grid-tile>
+         <mat-grid-tile [colspan] = "2">
+          <mat-paginator class="paginator-tbl" [length]="data.length"
+                  [pageSize]="data.pageSize"
+                  [pageSizeOptions]="[5, 10, 25, 100]"
+                  (page)="onPaginateChange($event)">
+        </mat-paginator>
+        </mat-grid-tile>
+      </mat-grid-list>
+    
+    <table *ngIf='!data.search' mat-table [dataSource]="data.users" class="mat-elevation-z8">
+      
+      <ng-container matColumnDef="bulk">
+        <!--<th mat-header-cell *matHeaderCellDef> <mat-checkbox appHighlight></mat-checkbox> </th>
+        <td mat-cell *matCellDef="let user" appBulkItem itemId='1'> </td>-->
+        <th mat-header-cell *matHeaderCellDef> <mat-checkbox (click)='bulkCheck()' [checked] = 'data.bulkTrig'></mat-checkbox> </th>
+        <td mat-cell *matCellDef="let user"> <mat-checkbox name='bulkItem' [value] = 'user.u_id' [checked] = 'data.bulk'></mat-checkbox> </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let user"> {{user.u_id}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="dp">
+        <th mat-header-cell *matHeaderCellDef> Dp </th>
+        <td mat-cell *matCellDef="let user"> <img [src]='user.user_image' height="20px" width="20px" onerror="this.src='https://cdn.iconscout.com/public/images/icon/free/png-512/avatar-user-business-man-399587fe24739d5a-512x512.png'"> </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="first name">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.first_name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="last name">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.last_name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let user"> {{user.email_id}}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let user">
+          <div [class]="['status-row-user-'+user.u_id]">
+            <span *ngIf='user.status == 0'>Pending</span>
+            <span *ngIf='user.status == 1'>Active</span>
+            <span *ngIf='user.status == 2'>De-active</span>
+            <span *ngIf='user.status == 3'>Deleted</span>
+          </div>    
+        </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let user"> 
+          <div class="button-row action-btns">
+            <button mat-icon-button (click)='changeState(user.u_id,"activate")' matTooltip="Activate User"
+            matTooltipPosition="above">
+              <mat-icon>face</mat-icon>
+            </button>
+            <button mat-icon-button (click)='changeState(user.u_id,"deactivate")' matTooltip="De-activate User"
+            matTooltipPosition="above">
+              <mat-icon>block</mat-icon>
+            </button>
+            <button mat-icon-button [routerLink]="['crudes/'+user.u_id]" matTooltip="Edit User"
+            matTooltipPosition="above">
+              <mat-icon>mode_edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)='changeState(user.u_id,"delete")' matTooltip="Delete User"
+            matTooltipPosition="above">
+              <mat-icon class="delete">delete</mat-icon>
+            </button>
+            <!--<button mat-icon-button [routerLink]="['user/profile']" [queryParams]="{user: user.u_id, env:data.env.substring(4)}" matTooltip="View User"
+            matTooltipPosition="above">
+              <mat-icon>link</mat-icon>
+            </button>-->
+          </div> 
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+    <table *ngIf='data.search' mat-table [dataSource]="data.qResult" class="mat-elevation-z8">
+      
+      <ng-container matColumnDef="bulk">
+        <!--<th mat-header-cell *matHeaderCellDef> <mat-checkbox appHighlight></mat-checkbox> </th>
+        <td mat-cell *matCellDef="let user" appBulkItem itemId='1'> </td>-->
+        <th mat-header-cell *matHeaderCellDef> <mat-checkbox (click)='bulkCheck()' [checked] = 'data.bulkTrig'></mat-checkbox> </th>
+        <td mat-cell *matCellDef="let user"> <mat-checkbox name='bulkItem' [value] = 'user.u_id' [checked] = 'data.bulk'></mat-checkbox> </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let user"> {{user.u_id}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="dp">
+        <th mat-header-cell *matHeaderCellDef> Dp </th>
+        <td mat-cell *matCellDef="let user"> <img [src]='user.user_image' height="20px" width="20px" onerror="this.src='https://cdn.iconscout.com/public/images/icon/free/png-512/avatar-user-business-man-399587fe24739d5a-512x512.png'"> </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="first name">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.first_name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="last name">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.last_name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let user"> {{user.email_id}}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let user">
+          <div [class]="['status-row-user-'+user.u_id]">
+            <span *ngIf='user.status == 0'>Pending</span>
+            <span *ngIf='user.status == 1'>Active</span>
+            <span *ngIf='user.status == 2'>De-active</span>
+            <span *ngIf='user.status == 3'>Deleted</span>
+          </div>    
+        </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let user"> 
+          <div class="button-row action-btns">
+            <button mat-icon-button (click)='changeState(user.u_id,"activate")' matTooltip="Activate User"
+            matTooltipPosition="above">
+              <mat-icon>face</mat-icon>
+            </button>
+            <button mat-icon-button (click)='changeState(user.u_id,"deactivate")' matTooltip="De-activate User"
+            matTooltipPosition="above">
+              <mat-icon>block</mat-icon>
+            </button>
+            <button mat-icon-button [routerLink]="['crudes/'+user.u_id]" matTooltip="Edit User"
+            matTooltipPosition="above">
+              <mat-icon>mode_edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)='changeState(user.u_id,"delete")' matTooltip="Delete User"
+            matTooltipPosition="above">
+              <mat-icon class="delete">delete</mat-icon>
+            </button>
+          </div> 
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    </mat-card-content>
+    </mat-card>
+    </div>
+    

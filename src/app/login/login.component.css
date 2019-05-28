@@ -1,0 +1,24 @@
+.mat-card-title{
+    color: #616161;
+    font-size: 20px;
+}
+.mat-card-actions{
+    margin: 0px;
+}
+.login-logo{
+    width:20px;
+}
+.mat-card{
+    padding: 30px;
+}
+.mat-progress-bar {
+    display: block;
+    height: 5px !important;
+    top: 2px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    overflow: hidden;
+    position: relative;
+    transition: opacity 250ms linear;
+    width: 100%;
+}

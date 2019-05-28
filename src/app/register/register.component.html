@@ -1,0 +1,107 @@
+<div style="    width: 100%;height: 100%;background: #fbfbfb;position: absolute;">
+  <div style="text-align: center;position: relative;top: 2%;">
+      <h1 style="color: #3f51b552;">SCHOOL MANAGEMENT SYSTEM</h1>
+  </div>
+  <div style="width: 28%;margin: 3% auto;">
+      <mat-progress-bar mode="indeterminate" *ngIf="data.loader"></mat-progress-bar>
+      <mat-card>
+				<mat-card-title>
+          <span>Sign up</span> 
+          <span class="fill-space"></span>
+          <span class="pull-right"><img class="login-logo" src="http://db.school-of-teacher-training.co.uk/images/LoginIcon11.png" alt='login-icon'></span>
+        </mat-card-title>
+				<mat-card-content>
+					<form *ngIf = 'data.newRegUi' class="MT-form" [formGroup] = "registerForm" (ngSubmit) = "registerUser(registerForm.value)">		
+						<mat-form-field>
+							<input type="text" matInput name="fname" placeholder="First Name" formControlName = "fname">
+							<mat-error *ngIf="registerForm.controls['fname'].errors?.required">
+						      First Name is <strong>Required</strong>
+						    </mat-error>
+					    	<mat-error *ngIf="!registerForm.controls['fname'].errors?.required && registerForm.controls['fname'].errors?.invalid">
+						      invalid
+						    </mat-error>
+						</mat-form-field>
+						<mat-form-field>
+							<input type="text" matInput name="lname" placeholder="Last Name" formControlName = "lname">
+							<mat-error *ngIf="registerForm.controls['lname'].errors?.required">
+						      Last Name is <strong>Required</strong>
+						    </mat-error>
+					    	<mat-error *ngIf="!registerForm.controls['lname'].errors?.required && registerForm.controls['lname'].errors?.invalid">
+						      invalid
+						    </mat-error>
+						</mat-form-field>
+						<mat-form-field>
+							<input type="email" #mailId matInput name="email" placeholder="Email" formControlName = "email">
+						    <mat-error *ngIf="registerForm.controls['email'].errors?.required">
+						      Email is <strong>required</strong>
+						    </mat-error>
+						    <mat-error *ngIf="registerForm.controls['email'].errors?.email">
+						      invalid email
+						    </mat-error>
+						    <mat-error *ngIf="registerForm.controls['email'].errors?.exist">
+						      Already Exist
+						    </mat-error>
+						</mat-form-field>
+						<mat-form-field>
+					    	<span matPrefix>+91 &nbsp;</span>
+					    	<input type="tel" name="contact" matInput placeholder="Phone Number" formControlName = "contact">
+					    	<mat-error *ngIf="registerForm.controls['contact'].errors?.required">
+						      Mobile is <strong>Required</strong>
+						    </mat-error>
+					    	<mat-error *ngIf="!registerForm.controls['contact'].errors?.required && registerForm.controls['contact'].errors?.invalid">
+						      invalid Mobile
+						    </mat-error>
+						    <mat-error *ngIf="registerForm.controls['contact'].errors?.exist">
+						      Already Exist
+						    </mat-error>
+				  		</mat-form-field>
+						<mat-form-field>
+							<input #password id='password' type="password" matInput name="password" placeholder="Password" formControlName = "password">
+							<mat-icon matSuffix *ngIf="registerForm.controls['password'].errors?.weak && registerForm.controls['password'].touched" style="color:red;"> error_outline </mat-icon>
+							<mat-icon matSuffix *ngIf="!registerForm.controls['password'].errors?.weak && registerForm.controls['password'].touched" style="color:green;"> check_circle </mat-icon>
+							<mat-error *ngIf="registerForm.controls['password'].errors?.required">
+						      Password is <strong>Required</strong>
+						    </mat-error>
+							<mat-error *ngIf="registerForm.controls['password'].errors?.short">
+						      Password must be <strong>8</strong> Charactors
+						    </mat-error>
+						</mat-form-field>
+						<mat-form-field>
+							<input #cpassword id='cpassword' type="password" matInput name="cpassword" placeholder="Confirm Password" formControlName = "cpassword">
+							<mat-error *ngIf="registerForm.controls['cpassword'].errors?.required">
+						      Password is <strong>Required</strong>
+						    </mat-error>
+						    <mat-error *ngIf="registerForm.controls['cpassword'].errors?.passwordCompare">
+						      Password does not match
+						    </mat-error>
+							
+						</mat-form-field>
+						
+						<button mat-raised-button color='warn' [disabled] = '!registerForm.valid' type="submit">Sign up</button>
+            <span class="fill-space"></span>
+            <span class="pull-right" style="margin: 10px 0px;color: #737373;font-size: 13px;">Already have an account? <a style="color: blue;cursor: pointer;" [routerLink]="['/login']">Login</a></span>
+					</form>
+					<form *ngIf = 'data.newRegVerifyUi' class="MT-form" [formGroup] = "verifyOtpForm">		
+						<mat-form-field>
+							<input type="text" matInput name="otp"  placeholder="OTP" formControlName='otp'>
+    							<mat-error *ngIf ="verifyOtpForm.controls['otp'].errors?.required">
+									OTP Required
+    							</mat-error>
+    							<mat-error *ngIf ="verifyOtpForm.controls['otp'].errors?.wrongOtp">
+									Invalid OTP
+    							</mat-error>
+						</mat-form-field>
+						{{data.message}}
+						<a (click) = "resendOtp(sendOtpForm.controls['contact'].value)" class="link">Resend OTP</a>
+						 <mat-card-actions>
+    						<button mat-raised-button color='primary' type="submit" [disabled] = 'data.loader'>verify</button>
+  						</mat-card-actions>
+						
+					</form>
+					<div *ngIf='data.success'>
+						Thank you for Registration.. <span><a [routerLink]="['/login']">Login Now</a></span>
+					</div>
+				</mat-card-content>
+			</mat-card>
+  </div>
+</div>

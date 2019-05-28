@@ -1,0 +1,49 @@
+<section class="dashboard-counter-section">
+  <div class="user-profile" *ngIf='!data.loader'>
+
+    <mat-grid-list cols="4">
+
+        <mat-grid-tile>
+            <mat-card>
+                <img class="dp" src="http://192.168.0.101/schoolman/uploads/1542357761-800px_COLOURBOX7129117.jpg" onerror="this.src='https://cdn.iconscout.com/public/images/icon/free/png-512/avatar-user-business-man-399587fe24739d5a-512x512.png'" alt="dp">
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan='3'>
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>
+                    My Profile
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-list role="list" class="profile-fields-list">
+                    <mat-list-item role="listitem"><span>First Name: </span>{{data.profData.first_name}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item role="listitem"><span>Last Name: </span> {{data.profData.last_name}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item role="listitem"><span>Contact No: </span> {{data.profData.contact_number}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item role="listitem"><span>Email: </span> {{data.profData.email_id}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item role="listitem"><span>Address: </span> {{data.profData.address}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item role="listitem"><span>City: </span> {{data.profData.city}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item role="listitem"><span>State: </span> {{data.profData.state}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item role="listitem"><span>Pin: </span> {{data.profData.pin}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item role="listitem"><span>Country: </span> {{data.profData.country}}</mat-list-item>
+                </mat-list>
+              </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+  </div>
+  <div *ngIf='data.loader' class="loader">
+      <mat-spinner [diameter]="50"></mat-spinner>
+  </div> 
+</section>

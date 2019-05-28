@@ -1,0 +1,76 @@
+<ng-container>
+  <app-header></app-header>
+
+  <mat-sidenav-container class="mt-nav-container">
+    <mat-sidenav #sidenav mode="side" opened class="MTsidenav"
+                 [fixedInViewport]="true" [fixedTopGap]="65"
+                 [fixedBottomGap]="0">
+                  <mat-nav-list>
+                      <mat-list-item [routerLink]="['dashboard']"> Dashboard <mat-icon>dashboard</mat-icon> </mat-list-item>
+                      <mat-divider></mat-divider>
+
+                      <mat-accordion>
+                          <mat-expansion-panel hideToggle>
+                              <mat-expansion-panel-header>
+                                  <mat-panel-title>
+                                      My Forms
+                                  </mat-panel-title>
+                                  <mat-icon>description</mat-icon>
+                              </mat-expansion-panel-header>
+                              <mat-list-item >Admission Form <mat-icon>note_add</mat-icon> </mat-list-item>
+                              <mat-divider></mat-divider>
+                              <mat-list-item >Exam Form <mat-icon>note_add</mat-icon></mat-list-item>
+                              <mat-divider></mat-divider>
+                          </mat-expansion-panel>
+                      </mat-accordion>
+                      <mat-divider></mat-divider>
+
+                      <mat-list-item > My Syllyabus <mat-icon>library_books</mat-icon> </mat-list-item>
+                      <mat-divider></mat-divider>
+
+                      <mat-list-item > Optional Subjects <mat-icon>library_books</mat-icon> </mat-list-item>
+                      <mat-divider></mat-divider>
+
+                      <mat-list-item > Progress Report <mat-icon>show_chart</mat-icon> </mat-list-item>
+                      <mat-divider></mat-divider>
+
+                      <mat-list-item > Library Issued Books <mat-icon>assignment_ind</mat-icon> </mat-list-item>
+                      <mat-divider></mat-divider>
+
+                      <mat-list-item > Sports & Co-Carricular <mat-icon>videogame_asset</mat-icon> </mat-list-item>
+                      <mat-divider></mat-divider>
+
+                      <mat-list-item > View Result <mat-icon>insert_chart</mat-icon> </mat-list-item>
+                      <mat-divider></mat-divider>
+
+                      <mat-list-item > View Attendance <mat-icon>playlist_add_check</mat-icon> </mat-list-item>
+                      <mat-divider></mat-divider>
+
+                      <mat-accordion>
+                        <mat-expansion-panel hideToggle>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Fee Details
+                                </mat-panel-title>
+                                <mat-icon>money</mat-icon>
+                            </mat-expansion-panel-header>
+                            <mat-list-item >Add Fee <mat-icon>add</mat-icon> </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item >View Fee <mat-icon>view_list</mat-icon></mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <mat-divider></mat-divider>
+              
+                   </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <!--<button type="button" mat-button (click)="sidenav.toggle()">
+        Toggle sidenav
+      </button>-->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <app-footer></app-footer>
+</ng-container>

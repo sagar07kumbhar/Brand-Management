@@ -1,0 +1,63 @@
+<mat-toolbar color="primary" class="mat-elevation-z4">
+  <button mat-icon-button (click)="this.toggleSidenavLeft()"><mat-icon>menu</mat-icon></button>
+  <span class="site-logo">
+	  <ul style="list-style: none; padding: 10px;">
+		  <li style="margin: 0px;
+		  padding: 0px;
+		  font-size: 17px;
+		  margin-block-start: 0em;
+		  margin-block-end: -1em;
+		  font-weight: 600;">SMS</li>
+		  <li style="color: gainsboro;
+		  margin: 0px;
+		  padding: 0px;
+		  font-size: 12px;
+		  margin-block-start: 0em;
+		  margin-block-end: 0em;">School Management System</li>
+	  </ul>
+  </span>
+  <span class="fill-space"></span>
+  
+  	<img [src]="data.dp" style="height:40px;width:40px;margin-right:10px;border-radius: 50%;" onerror="this.src='https://cdn.iconscout.com/public/images/icon/free/png-512/avatar-user-business-man-399587fe24739d5a-512x512.png'">
+	  <span style="margin-right:10px;">
+		<ul style="list-style: none; padding: 10px;">
+			<li style="margin: 0px;
+			padding: 0px;
+			font-size: 17px;
+			margin-block-start: 0em;
+			margin-block-end: -1em;
+			font-weight: 600; text-transform: capitalize;">{{data.uname}}</li>
+			<li style="color: gainsboro;
+			margin: 0px;
+			padding: 0px;
+			font-size: 12px;
+			margin-block-start: 0em;
+			margin-block-end: 0em;">{{userRole}}</li>
+		</ul>
+	  </span>
+  	<button mat-icon-button [matMenuTriggerFor]="notif">
+		<mat-icon matBadgeColor="accent">notifications</mat-icon>
+	</button>
+
+	<mat-menu #notif="matMenu"  [overlapTrigger]="false" class='MT-menu'>
+			<mat-list>
+			 	<!--<mat-list-item> New enquiry </mat-list-item>
+			 	<mat-list-item> Teached asked for changes </mat-list-item>
+			 	<mat-list-item> New enquiry </mat-list-item>-->
+			</mat-list>
+	</mat-menu>
+
+	<button mat-icon-button [matMenuTriggerFor]="menu">
+		<mat-icon>more_vert</mat-icon>
+	</button>
+	<mat-menu #menu="matMenu"  [overlapTrigger]="false" class='MT-menu'>
+			<button mat-menu-item [routerLink]="['profile']">
+				<mat-icon>account_circle</mat-icon>
+				<span>My Profile</span>
+			</button>
+			<button mat-menu-item (click)="logout()">
+				<mat-icon>exit_to_app</mat-icon>
+				<span>Logout</span>
+			</button>
+	</mat-menu>
+</mat-toolbar>

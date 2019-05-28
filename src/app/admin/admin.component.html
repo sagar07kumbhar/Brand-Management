@@ -1,0 +1,126 @@
+<ng-container>
+    <app-header></app-header>
+  
+    <mat-sidenav-container class="mt-nav-container">
+      <mat-sidenav #sidenav mode="side" opened class="MTsidenav"
+                   [fixedInViewport]="true" [fixedTopGap]="65"
+                   [fixedBottomGap]="0">
+                    <mat-nav-list>
+                        <mat-list-item [routerLink]="['/dashboard']"> Dashboard <mat-icon>dashboard</mat-icon> </mat-list-item>
+                        <mat-divider></mat-divider>
+
+                        <mat-accordion>
+                            <mat-expansion-panel hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        All Teachers
+                                    </mat-panel-title>
+                                    <mat-icon>people</mat-icon>
+                                </mat-expansion-panel-header>
+                                <mat-list-item [routerLink]="['product/service']">Add Teacher <mat-icon>add</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item [routerLink]="['product/section']">View Teacher <mat-icon>list</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <mat-divider></mat-divider>
+
+                        <mat-accordion>
+                            <mat-expansion-panel hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        All Students
+                                    </mat-panel-title>
+                                    <mat-icon>school</mat-icon>
+                                </mat-expansion-panel-header>
+                                <mat-list-item [routerLink]="['product/service']">Add Student <mat-icon>add</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item [routerLink]="['product/section']">View Student <mat-icon>list</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <mat-divider></mat-divider>
+
+                        <mat-accordion>
+                            <mat-expansion-panel hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Classes & Divisions
+                                    </mat-panel-title>
+                                    <mat-icon>meeting_room</mat-icon>
+                                </mat-expansion-panel-header>
+                                <mat-list-item [routerLink]="['product/service']">Add Class <mat-icon>add</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item [routerLink]="['product/section']">View Class <mat-icon>list</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <mat-divider></mat-divider>
+
+                        <mat-accordion>
+                            <mat-expansion-panel hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        All Parents
+                                    </mat-panel-title>
+                                    <mat-icon>people_outline</mat-icon>
+                                </mat-expansion-panel-header>
+                                <mat-list-item [routerLink]="['product/service']">Add Parent <mat-icon>add</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item [routerLink]="['product/section']">View Parent <mat-icon>list</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <mat-divider></mat-divider>
+
+                        <mat-list-item [routerLink]="['/dashboard']">All Admissions <mat-icon>assignment_ind</mat-icon></mat-list-item>
+                        <mat-divider></mat-divider>
+
+                        <mat-accordion>
+                            <mat-expansion-panel hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        All Reports
+                                    </mat-panel-title>
+                                    <mat-icon>view_list</mat-icon>
+                                </mat-expansion-panel-header>
+                                <mat-list-item [routerLink]="['product/service']">Attendance Report <mat-icon>list_alt</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item [routerLink]="['product/section']">Attendance Defaulter Report <mat-icon>report</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item [routerLink]="['product/section']">Student Fee wise Report <mat-icon>money</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item [routerLink]="['product/section']">Fee Defaulter Report <mat-icon>report</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <mat-divider></mat-divider>
+
+                        <mat-accordion>
+                            <mat-expansion-panel hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Staff Management
+                                    </mat-panel-title>
+                                    <mat-icon>assessment</mat-icon>
+                                </mat-expansion-panel-header>
+                                <mat-list-item [routerLink]="['product/service']">Add Staff Leave <mat-icon>add</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item [routerLink]="['product/section']">View Staff Leave <mat-icon>list</mat-icon></mat-list-item>
+                                <mat-divider></mat-divider>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <mat-divider></mat-divider>
+                
+                     </mat-nav-list>
+      </mat-sidenav>
+  
+      <mat-sidenav-content>
+        <!--<button type="button" mat-button (click)="sidenav.toggle()">
+          Toggle sidenav
+        </button>-->
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+    <app-footer></app-footer>
+  </ng-container>

@@ -1,0 +1,5 @@
+@import '../../material-sidenav.css';
+
+.mat-expansion-indicator{
+    display: none;
+}

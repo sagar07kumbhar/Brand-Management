@@ -1,0 +1,175 @@
+<section class="dashboard-counter-section">
+  <div class="MT-contain">
+    <mat-progress-bar mode="indeterminate" *ngIf="data.loader" class="MT-round-progress"></mat-progress-bar>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <span>Add Admin</span> 
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form *ngIf = 'data.newRegUi' class="MT-form" [formGroup] = "registerForm" (ngSubmit) = "registerUser(registerForm.value)">		
+          <mat-grid-list cols="4" rowHeight="100px">
+
+            <mat-grid-tile>
+              <mat-form-field>
+                <input type="text" matInput name="fname" placeholder="First Name" formControlName = "fname">
+                <mat-error *ngIf="registerForm.controls['fname'].errors?.required">
+                    First Name is <strong>Required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="!registerForm.controls['fname'].errors?.required && registerForm.controls['fname'].errors?.invalid">
+                    invalid
+                  </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+              <mat-form-field>
+                <input type="text" matInput name="lname" placeholder="Last Name" formControlName = "lname">
+                <mat-error *ngIf="registerForm.controls['lname'].errors?.required">
+                    Last Name is <strong>Required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="!registerForm.controls['lname'].errors?.required && registerForm.controls['lname'].errors?.invalid">
+                    invalid
+                  </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+              <mat-form-field>
+                <input type="email" #mailId matInput name="email" placeholder="Email" formControlName = "email">
+                  <mat-error *ngIf="registerForm.controls['email'].errors?.required">
+                    Email is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="registerForm.controls['email'].errors?.email">
+                    invalid email
+                  </mat-error>
+                  <mat-error *ngIf="registerForm.controls['email'].errors?.exist">
+                    Already Exist
+                  </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+              <mat-form-field>
+                  <span matPrefix>+91 &nbsp;</span>
+                  <input type="tel" name="contact" matInput placeholder="Phone Number" formControlName = "contact">
+                  <mat-error *ngIf="registerForm.controls['contact'].errors?.required">
+                    Mobile is <strong>Required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="!registerForm.controls['contact'].errors?.required && registerForm.controls['contact'].errors?.invalid">
+                    invalid Mobile
+                  </mat-error>
+                  <mat-error *ngIf="registerForm.controls['contact'].errors?.exist">
+                    Already Exist
+                  </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field>
+                    <textarea matInput placeholder="Address" name="Address" formControlName = "address"></textarea>
+                    <mat-error *ngIf="registerForm.controls['address'].errors?.required">
+                      Address is <strong>Required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input type="text" name="city" placeholder="City" formControlName = "city" matInput [matAutocomplete]="citylist">
+                    <mat-autocomplete #citylist="matAutocomplete">
+                        <mat-option value='Pune'> Pune </mat-option>
+                        <mat-option value='Mumbai'> Mumbai </mat-option>
+                        <mat-option value='Kolhapur'> Kolhapur </mat-option>
+                    </mat-autocomplete>
+                    <mat-error *ngIf="registerForm.controls['city'].errors?.required">
+                      City is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input type="text" name="state" placeholder="State" formControlName = "state" matInput [matAutocomplete]="statelist">
+                    <mat-autocomplete #statelist="matAutocomplete">
+                        <mat-option value='Maharashtra'> Maharashtra </mat-option>
+                        <mat-option value='Delhi'> Delhi </mat-option>
+                        <mat-option value='Gujarat'> Gujarat </mat-option>
+                        <mat-option value='Kerala'> Kerala </mat-option>
+                        <mat-option value='Punjab'> Punjab </mat-option>
+                        <mat-option value='Haryana'> Haryana </mat-option>
+                    </mat-autocomplete>
+                    <mat-error *ngIf="registerForm.controls['city'].errors?.required">
+                      City is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+              <mat-form-field>
+                  <input type="text" matInput name="pin" placeholder="Pin code" formControlName = "pin">
+                  <mat-error *ngIf="registerForm.controls['pin'].errors?.required">
+                      Pin code is <strong>Required</strong>
+                  </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input type="text" name="country" placeholder="Country" formControlName = "country" matInput [matAutocomplete]="countrylist">
+                    <mat-autocomplete #countrylist="matAutocomplete">
+                        <mat-option value='India'> India </mat-option>
+                    </mat-autocomplete>
+                    <mat-error *ngIf="registerForm.controls['city'].errors?.required">
+                      City is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <button (click)="selectedFile.click()" mat-raised-button type="button" *ngIf='!data.profileView'>
+                    <mat-icon>add_photo_alternate</mat-icon> Profile Picture
+                    <input type="file" name="photo" #selectedFile style="display:none;"/>
+                </button>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+              <mat-form-field>
+                <input #password id='password' type="password" matInput name="password" placeholder="Password" formControlName = "password">
+                <mat-icon matSuffix *ngIf="registerForm.controls['password'].errors?.weak && registerForm.controls['password'].touched" style="color:red;"> error_outline </mat-icon>
+                <mat-icon matSuffix *ngIf="!registerForm.controls['password'].errors?.weak && registerForm.controls['password'].touched" style="color:green;"> check_circle </mat-icon>
+                <mat-error *ngIf="registerForm.controls['password'].errors?.required">
+                    Password is <strong>Required</strong>
+                  </mat-error>
+                <mat-error *ngIf="registerForm.controls['password'].errors?.short">
+                    Password must be <strong>8</strong> Charactors
+                  </mat-error>
+              
+              
+              
+              </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+              <mat-form-field>
+                <input #cpassword id='cpassword' type="password" matInput name="cpassword" placeholder="Confirm Password" formControlName = "cpassword">
+                <mat-error *ngIf="registerForm.controls['cpassword'].errors?.required">
+                    Password is <strong>Required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="registerForm.controls['cpassword'].errors?.passwordCompare">
+                    Password does not match
+                  </mat-error>
+                
+              </mat-form-field>
+            </mat-grid-tile>
+
+          </mat-grid-list>
+          <button mat-raised-button color='primary' [disabled] = '!registerForm.valid' type="submit">Sign up</button>
+          <button style="margin-left: 10px;" mat-raised-button color='warn' class="resetBtn" type="reset">Cancel</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+  

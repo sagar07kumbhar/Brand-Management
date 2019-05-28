@@ -1,0 +1,224 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-toolbar{
+	
+}
+.loader{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    text-align: center;
+    vertical-align: middle;
+}
+.loader mat-spinner{
+    font-size: 35px;
+    margin: 20% 35%;
+    color: #fff;
+}
+
+
+.button-row button,
+.button-row a {
+  margin-right: 8px;
+}
+
+.mt-container{
+    padding: 0px 30px;
+    background: #fafafa;
+}
+.action-btns button mat-icon{
+	    font-size: 17px;
+}
+.action-btns button mat-icon.delete ,.action-btns button mat-icon.cancel{
+	    color: #e04236;
+}
+.MT-dashboard{
+    padding: 30px 30px;
+}
+.MT-table{
+    
+}
+.MT-table .bulk-action{
+	position: absolute;
+    left: 0;
+    width: 35%;
+}
+.MT-table .paginator-tbl{
+	position: absolute;
+    right: 0;
+}
+.MT-form mat-form-field{
+	width: 100%;
+    padding-right: 50px;
+    font-size: 15px;
+}
+.MT-form mat-radio-button{
+    margin-right: 30px;
+}
+.MT-form label.custom-label{
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.MT-contain{
+    margin: 20px;
+}
+
+.MT-round-progress{
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    top: 2px !important;
+    height: 5px !important;
+}
+
+i.placeloader{
+    color: #607D8B;
+    text-align: center;
+    display: block;
+}
+
+.error-card{
+    text-align: center;
+    margin: 15% 0px;
+}
+.error-card mat-icon {
+    font-size: 60px;
+    direction: rtl;
+    color: #c3c3c3;
+}
+.error-card h2{
+    color: #c3c3c3;
+}
+.fill-space{
+    flex: 1 1 auto;
+}
+mat-grid-tile.custom-grid .mat-figure {
+    display: block !important;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 40px;
+    -webkit-margin-end: 40px;
+}
+
+.pull-left{float:left!important}
+.pull-right{float:right!important}
+
+a.link{
+    color: blue;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.MT-menu .mat-menu-item span{
+    font-size: 12px;
+}
+.MT-menu .mat-menu-item mat-icon{
+    font-size:  20px;
+}
+.MT-profile-avatar{
+    height: 140px;
+}
+.mat-grid-tile {
+    overflow:unset !important;
+}
+.mat-card .avtar-desc{
+        text-align: center;
+        line-height: 0px;
+        margin: 30px 0px;
+        padding: 0px 10px;
+}
+
+mat-grid-tile.profile-grid .mat-figure {
+    display: block !important;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 10px !important;
+    -webkit-margin-end: 10px !important;
+}
+.profile-details .mat-list-item{
+        font-size: 14px;
+}
+.profile-details .mat-list-item span{
+    color: #a0a0a0;
+    min-width: 20%;
+    font-size: 14px !important;
+    margin: 0px;
+    padding: 0px !important; 
+}
+
+.mt-profile .mat-tab-group{
+    margin-bottom: 40px;
+}
+
+.center{
+    text-align: center !important;
+}
+table {
+  width: 100%;
+}
+
+.mt-profile-edit{
+    margin: 20px;
+    overflow: hidden;
+}
+
+.mt-nav-container .mat-expansion-panel-header {
+    padding: 0 16px !important;
+}
+
+.mt-nav-container .mat-expansion-panel-body {
+    padding: 0 0px 16px !important;
+}
+
+.mt-nav-container .mat-expansion-panel {
+    box-shadow: none !important;
+    border-bottom: 1px solid #ddd !important;
+}
+
+.dashboard-counter-section{
+    margin: 30px 0px;
+}
+
+.dashboard-counter-section .mat-grid-tile .mat-figure {
+    display: block !important;
+    margin: 0px 10px !important;
+}
+
+.dashboard-counter-section .box-back{
+    background-size: cover !important;
+    border-radius: 4px;
+}
+
+.dashboard-counter-section .mat-card{
+    background-color: #ffffffe0;
+}
+
+.dashboard-counter-section .mat-card-content{
+    margin: 0px 16px;
+    font-size: 25px;
+    font-weight: 600;
+    color: #3f51b5d1;
+    text-shadow: 1px 1px 1px #e2e2e2;
+}
+
+.user-profile .dp{
+    width: 100%;
+    object-fit: cover;
+}
+
+.profile-fields-list .mat-list-item{
+    color: #737373;
+    font-weight: 400;
+}
+
+.profile-fields-list .mat-list-item span{
+    color: #989898;
+    text-shadow: none;
+    width: 15%;
+}
