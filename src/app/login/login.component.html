@@ -1,8 +1,9 @@
-<div style="    width: 100%;height: 100%;background: #fbfbfb;position: absolute;">
+<div style="width: 100%;height: 100%;background: linear-gradient(20deg,#c37992 0,#83c9e8 50%);position: absolute;">
   <div style="text-align: center;position: relative;top: 15%;">
-      <h1 style="color: #3f51b552;">SCHOOL MANAGEMENT SYSTEM</h1>
+      <h1 style="color: #fff;margin: 0px;">Keep an eye on your budget.</h1>
+      <h3 style="color: #fff;margin: 20px 0px;">MAP Application</h3>
   </div>
-  <div style="width: 28%;margin: 10% auto;">
+  <div style="width: 28%;margin: 9% auto;">
       <mat-progress-bar mode="indeterminate" *ngIf="data.loader"></mat-progress-bar>
     <mat-card>
         <mat-card-title>
@@ -32,7 +33,7 @@
                <mat-card-actions>
                   <button mat-raised-button color='primary' type="submit" [disabled] = 'data.loader'>Sign in</button>
                   <span class="fill-space"></span>
-            <span class="pull-right" style="margin: 10px 0px;color: #737373;font-size: 13px;">Don't have an account? <a style="color: blue;cursor: pointer;" [routerLink]="['/register']">Sign up</a></span>
+            <!--<span class="pull-right" style="margin: 10px 0px;color: #737373;font-size: 13px;">Don't have an account? <a style="color: blue;cursor: pointer;" [routerLink]="['/register']">Sign up</a></span>-->
                 </mat-card-actions>
               
             </form>

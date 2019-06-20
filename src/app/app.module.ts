@@ -81,6 +81,8 @@ import { TeacherGuard } from './guards/teacher.guard';
 import { StudentGuard } from './guards/student.guard';
 import { ParentGuard } from './guards/parent.guard';
 import { NotLogged } from './guards/mt-dact';
+import { ClientComponent } from './client/client.component';
+import { ClientDashboardComponent } from './client/client-dashboard/client-dashboard.component';
 
 
 const appRoutes: Routes = [
@@ -118,6 +120,16 @@ const appRoutes: Routes = [
     children: [
       {path: '', component: AdminDashboardComponent},
       {path: 'dashboard', component: AdminDashboardComponent},
+      {path: 'profile', component: ProfileComponent},
+    ]
+  },
+  {
+    path: 'client',
+    component: ClientComponent,
+    //canActivate: [ClientGuard],
+    children: [
+      {path: '', component: ClientDashboardComponent},
+      {path: 'dashboard', component: ClientDashboardComponent},
       {path: 'profile', component: ProfileComponent},
     ]
   },
@@ -177,7 +189,9 @@ const appRoutes: Routes = [
     RegisterComponent,
     AddUserComponent,
     ViewUserComponent,
-    ProfileComponent
+    ProfileComponent,
+    ClientComponent,
+    ClientDashboardComponent,
   ],
   imports: [
     BrowserModule,

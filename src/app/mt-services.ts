@@ -18,8 +18,8 @@ export class MTservice{
 	public stickyHeader: EventEmitter<any> = new EventEmitter();
 	//baseUrl:string = 'http://localhost:4200/';
 	baseUrl:string = 'http://mtdev.in/sms/';
-  //apiLink:string = 'http://192.168.0.101/schoolman/index.php/api/';
-	apiLink:string = 'http://mtdev.in/smsapi/index.php/api/';
+  apiLink:string = 'http://localhost/smsapi/index.php/api/';
+	//apiLink:string = 'http://mtdev.in/smsapi/index.php/api/';
 	apiKey:string = btoa('smsapi1234');
 	data:any = {};
 	options:any;
