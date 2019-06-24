@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
 import { MTservice } from '../../mt-services';
 import { MTvalidators } from '../../mt-validators';
 import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup} from '@angular/forms';
@@ -14,13 +14,15 @@ export class MtStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-add-user',
+  selector: '<app-add-user></app-add-user>',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
 
   @ViewChild('selectedFile') selectedFileEl;
+  @Input('fmode') fmode: any;
+  @Input('data') edata: any;
 
   matcher = new MtStateMatcher();
   emailFormControl = new FormControl('', [
@@ -49,23 +51,30 @@ export class AddUserComponent implements OnInit {
     this.data.newRegUi = true;
     this.data.newRegVerifyUi = false;
     this.data.message = '';
+    //this.fmode = (this.fmode) ? this.fmode : 'add';
+   
+    
 
+   }
 
+  ngOnInit() {
+    this.fmode = (this.fmode) ? this.fmode : 'add';
+    console.log(this.edata);
     this.registerForm = new FormGroup({
-      fname: new FormControl('',[
+      fname: new FormControl((this.edata) ? this.edata.first_name : '',[
           Validators.required,
           this.valider.validAlphaOnly
         ]),
-      lname: new FormControl('',[
+      lname: new FormControl((this.edata) ? this.edata.last_name : '',[
           Validators.required,
           this.valider.validAlphaOnly
         ]),
-      email: new FormControl('',[
+      email: new FormControl((this.edata) ? this.edata.email_id : '',[
           Validators.required,
           Validators.email            
         ],
         [this.if_exist_email.bind(this)]),
-      contact: new FormControl('',[
+      contact: new FormControl((this.edata) ? this.edata.contact_number : '',[
           Validators.required,
           Validators.maxLength(10),
           Validators.minLength(10),
@@ -79,18 +88,14 @@ export class AddUserComponent implements OnInit {
       state: new FormControl(''),
       pin: new FormControl(''),
       country: new FormControl(''),
-      password: new FormControl('',[
-          Validators.required,
-        ]),
+      password: new FormControl('',
+          (this.fmode == 'add') ? [Validators.required] : [],
+      ),
       cpassword: new FormControl('',[
           Validators.required,
           this.passCompare
         ]),
     });
-
-   }
-
-  ngOnInit() {
   }
 
   public passCompare = (control) => {

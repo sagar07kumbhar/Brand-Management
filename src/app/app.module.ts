@@ -83,6 +83,7 @@ import { ParentGuard } from './guards/parent.guard';
 import { NotLogged } from './guards/mt-dact';
 import { ClientComponent } from './client/client.component';
 import { ClientDashboardComponent } from './client/client-dashboard/client-dashboard.component';
+import { EdituserComponent } from './shared/edituser/edituser.component';
 
 
 const appRoutes: Routes = [
@@ -109,6 +110,7 @@ const appRoutes: Routes = [
       {path: '', component: DashboardComponent},
       {path: 'dashboard', component: DashboardComponent},
       {path: 'adduser', component: AddUserComponent},
+      {path: 'edituser/:id', component: EdituserComponent},
       {path: 'viewuser', component: ViewUserComponent},
       {path: 'profile', component: ProfileComponent},
     ]
@@ -192,6 +194,7 @@ const appRoutes: Routes = [
     ProfileComponent,
     ClientComponent,
     ClientDashboardComponent,
+    EdituserComponent,
   ],
   imports: [
     BrowserModule,
